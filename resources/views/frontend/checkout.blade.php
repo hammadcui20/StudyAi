@@ -9,12 +9,21 @@
 
 </div>
     <div class="container mt-3">
-        <form action="{{url('place-order')}}" method="POST">
+        <form action="{{url('place-order')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-7">
                     <div class="card border-0">
                         <div class="card-body">
+                            <div class="row my-4">
+                                <div class="col-12">
+                                <img src="https://www.kindpng.com/picc/m/761-7619848_jazz-cash-easy-paisa-hd-png-download.png" class="w-100" alt="Jazz Cash Easy Paisa, HD Png Download@kindpng.com"><br>
+                                </div>
+                                <div class="col-12">
+                                <h3 class="text-center text-primary fs-1 py-3">0300-1565651</h3>
+                                </div>
+                            </div>
+                                
                             <h5>Basic Detail</h5>
                             <hr>
                             <div class="row checkout-form">
@@ -58,6 +67,22 @@
                                     <label for="email">Zip Code</label>
                                     <input type="number" name="pincode" class="form-control" value="{{Auth::user()->pincode}}"   placeholder="Punjab" required>
                                 </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="email">Transaction Proof</label>
+                                    <input type="file" name="image"  class="form-control border border-dark" >
+                                 </div>
+                                 <div class="row">
+                                <div class="col-md-12 mb-3">
+                                        <select class="border border-dark p-2 " name="size_id">
+                                            <option value="">Select Size</option>
+                                                @foreach ($sizes as $item )
+                                                    <option value="{{$item->id}}">{{$item->size}}</option>
+                                                @endforeach
+                                        </select>
+                                        
+                                </div>
+                            </div>
+
                             </div>
                         </div>
                     </div>
@@ -78,10 +103,10 @@
                                     </thead>
                                     @foreach ($cartitem as $item)
                                         <tr>
-                                            <td>{{$item->products->name}}</td>    
-                                            <td>{{$item->prod_qty}}</td>    
-                                            <td>{{$item->products->selling_price}}</td>    
-                                            <td></td>    
+                                            <td>{{$item->products->name}}</td>
+                                            <td>{{$item->prod_qty}}</td>
+                                            <td>{{$item->products->selling_price}}</td>
+                                            <td></td>
                                         </tr>
                                     @endforeach
 
@@ -108,12 +133,12 @@
     padding: 10px;
     font-weight: 400;
 }
-    
+
 .checkout-form label
 {
     font-size: .9rem;
     font-weight: 700;
 }
-    
+
 </style>
 @endsection

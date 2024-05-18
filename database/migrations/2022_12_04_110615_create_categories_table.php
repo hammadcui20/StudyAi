@@ -22,8 +22,8 @@ return new class extends Migration
             $table->tinyInteger('popular')->default('0');
             $table->string('image');
             $table->string('meta_title');
-            $table->string('meta_description');
-            $table->string('meta_keyword');
+            // $table->string('email');
+            // $table->string('meta_keyword');
             $table->timestamps();
         });
     }

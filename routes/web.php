@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-
+// use App\Facades\Auth;
 use App\Http\Controllers\Admin\frontendController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\ProductController;
@@ -30,26 +30,22 @@ use App\Mail\WelcomeMail;
 */
 //Routes for 2FA
 
-Route::middleware(['2fa'])->group(function () {
-   
-    Route::get('/', [HomeController::class, 'index'])->name('mainpage');
-    Route::post('/2fa', [FrontController::class ,  'mainpage'])->name('2fa');
-});
-Route::get('/complete-registration', [RegisterController::class, 'completeRegistration'])->name('complete.registration');
-
 
 Route::get('/', [FrontController::class ,  'mainpage']);
 Route::get('/category',[FrontController::class ,  'category']);
 Route::get('view-category/{slug}',[FrontController::class ,  'viewCategory']);
+Route::get('view-productsan',[FrontController::class ,  'allSanitary']);
+Route::get('view-productselec',[FrontController::class ,  'allElec']);
+Route::get('view-productshar',[FrontController::class ,  'allHardware']);
 Route::get('view-category/{cate_slug}/{prod_slug}',[FrontController::class ,  'productView']);
 Route::get('view-product/{prod_slug}',[FrontController::class ,  'eachProdView']);
 
 Auth::routes(['verify' => true]);
 
-// Route::get('/email', function(){
-//     Mail::to('')->send(new WelcomeMail());
-//     return new WelcomeMail();
-// });
+Route::get('/email', function(){
+    Mail::to('email@gmail.com')->send(new WelcomeMail());
+    return new WelcomeMail();
+});
 
 
 Route::post('add-to-cart',[CartController::class,'addProduct']);
@@ -60,6 +56,11 @@ Route::post('searchProduct',[FrontController::class , 'searchProducts']);
 Route::get('contact',[contactComplains::class ,  'index']);
 Route::post('sendMessage',[contactComplains::class ,  'submitForm']);
 Route::view('about' , 'frontend.About');
+Route::view('plumber' , 'frontend.plumber');
+Route::view('electrician' , 'frontend.electrician');
+Route::view('hardware' , 'frontend.hardware');
+
+
 
 
 Route::middleware(['auth' ])->group(function () {
@@ -73,51 +74,150 @@ Route::middleware(['auth' ])->group(function () {
 
 
 // Admin DashBoard Routes
-Route::middleware(['auth','isAdmin'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('Admin.dashboard');
-     });
-    //  Route::get('/dashboard', [ChartJSController::class, 'index'])->name('chart');
-    // Route::get('chart', [ChartJSController::class, 'index']);
-});
+// Route::middleware(['auth','isAdmin'])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('Admin.dashboard');
+//      });
+//     //  Route::get('/dashboard', [ChartJSController::class, 'index'])->name('chart');
+//     // Route::get('chart', [ChartJSController::class, 'index']);
+// });
 
-Route::middleware(['auth','isAdmin'])->group(function () {
-    Route::get('/dashboard','App\Http\Controllers\Admin\frontendController@index');
-    Route::get('/dashboard', [ChartJSController::class, 'index'])->name('chart');
+// Tailor Routes
+// Route::middleware(['auth'])->group(function () {
+//     Route::get('/tdash','App\Http\Controllers\Admin\frontendController@tailorindex');
+//     Route::get('/tdash', [ChartJSController::class, 'tailor'])->name('chart');
 
-    // Categories Routes
+//     Route::get('/products','App\Http\Controllers\Admin\ProductController@indext');
+//     Route::get('/addproduct','App\Http\Controllers\Admin\ProductController@addt');
+//     Route::post('insertproduct' , 'App\Http\Controllers\Admin\ProductController@insertt');
 
-    Route::get('/categories','App\Http\Controllers\Admin\CategoriesController@index');
-    Route::get('/add-category','App\Http\Controllers\Admin\CategoriesController@add');
-    Route::post('insert-category' , 'App\Http\Controllers\Admin\CategoriesController@insert');
-    Route::get('edit-category/{id}',[CategoriesController::class , 'edit']);
-    Route::put('update-category/{id}',[CategoriesController::class , 'update']);
-    Route::get('delete-category/{id}',[CategoriesController::class , 'delete']);
-    
-    
-    // Product Routes
-    Route::get('/products','App\Http\Controllers\Admin\ProductController@index');
-    Route::get('/add-product','App\Http\Controllers\Admin\ProductController@add');
-    Route::post('insert-product' , 'App\Http\Controllers\Admin\ProductController@insert');
-    Route::get('edit-product/{id}',[ProductController::class, 'edit']);
-    Route::put('update-product/{id}',[ProductController::class , 'update']);
-    Route::get('delete-product/{id}',[ProductController::class , 'delete']);
-    Route::put('update-order/{id}',[UserController::class , 'updateOrder']);
-
-    
-    Route::get('orders',[OrderController::class, 'index']);
-    Route::get('admin/view-order/{id}',[OrderController::class, 'view']);
-    Route::put('update-order/{id}',[OrderController::class , 'updateOrder']);
-    Route::get('order-history',[OrderController::class , 'orderHistory']);
-    
-    Route::get('users',[DashboardController::class, 'users']);
-    Route::get('view-user/{id}',[DashboardController::class, 'viewUser']);
-    
-    
-    Route::get('message',[contactComplains::class, 'viewcomplains']);
+//     Route::get('edit-product/{id}',[ProductController::class, 'editt']);
+//     Route::put('update-product/{id}',[ProductController::class , 'update']);
+//     Route::get('delete-product/{id}',[ProductController::class , 'delete']);
 
 
-});
+//     Route::get('orders',[OrderController::class, 'indext']);
+//     Route::get('admin/view-order/{id}',[OrderController::class, 'viewt']);
+//     Route::put('update-order/{id}',[OrderController::class , 'updateOrdert']);
+//     Route::get('order-history',[OrderController::class , 'orderHistoryt']);
+// });
+
+// Tailor Routes
+Route::get('/tdash','App\Http\Controllers\Admin\frontendController@tailorindex');
+Route::get('/tdash', [ChartJSController::class, 'tailor'])->name('chart2');
+
+Route::get('/productss','App\Http\Controllers\Admin\ProductController@indext');
+Route::get('/addproduct','App\Http\Controllers\Admin\ProductController@addt');
+Route::post('insertproduct' , 'App\Http\Controllers\Admin\ProductController@insert');
+
+Route::get('edit-product/{id}',[ProductController::class, 'editt']);
+Route::put('update-product/{id}',[ProductController::class , 'update']);
+Route::get('delete-product/{id}',[ProductController::class , 'delete']);
+
+
+Route::get('orderss',[OrderController::class, 'indext']);
+Route::get('view-orders/{id}',[OrderController::class, 'viewt']);
+Route::put('update-orders/{id}',[OrderController::class , 'updateOrdert']);
+Route::get('order-historys',[OrderController::class , 'orderHistoryt']);
 
 
 
+
+
+
+
+// Till this
+// Route::middleware(['isAdmin'])->group(function () {
+//     Route::get('/dashboard','App\Http\Controllers\Admin\frontendController@index');
+//     Route::get('/dashboard', [ChartJSController::class, 'index'])->name('chart');
+
+//     // Categories Routes
+
+//     Route::get('/categories','App\Http\Controllers\Admin\CategoriesController@index');
+//     Route::get('/add-category','App\Http\Controllers\Admin\CategoriesController@add');
+//     Route::post('insert-category' , 'App\Http\Controllers\Admin\CategoriesController@insert');
+//     Route::get('edit-category/{id}',[CategoriesController::class , 'edit']);
+//     Route::put('update-category/{id}',[CategoriesController::class , 'update']);
+//     Route::get('delete-category/{id}',[CategoriesController::class , 'delete']);
+
+
+//     // Product Routes
+//     Route::get('/products','App\Http\Controllers\Admin\ProductController@index');
+//     Route::get('/add-product','App\Http\Controllers\Admin\ProductController@add');
+//     Route::post('insert-product' , 'App\Http\Controllers\Admin\ProductController@insert');
+//     Route::get('edit-product/{id}',[ProductController::class, 'edit']);
+//     Route::put('update-product/{id}',[ProductController::class , 'update']);
+//     Route::get('delete-product/{id}',[ProductController::class , 'delete']);
+//     Route::put('update-order/{id}',[UserController::class , 'updateOrder']);
+
+
+//     Route::get('orders',[OrderController::class, 'index']);
+//     Route::get('admin/view-order/{id}',[OrderController::class, 'view']);
+//     Route::put('update-order/{id}',[OrderController::class , 'updateOrder']);
+//     Route::get('order-history',[OrderController::class , 'orderHistory']);
+
+//     Route::get('users',[DashboardController::class, 'users']);
+//     Route::get('view-user/{id}',[DashboardController::class, 'viewUser']);
+
+//     Route::get('message',[contactComplains::class, 'viewcomplains']);
+
+
+// });
+
+//  Admin ROutes
+Route::get('/dashboard','App\Http\Controllers\Admin\frontendController@index');
+Route::get('/dashboard', [ChartJSController::class, 'index'])->name('chart');
+
+// Categories Routes
+
+Route::get('/classroom','App\Http\Controllers\Admin\CategoriesController@index');
+Route::get('/add-classroom','App\Http\Controllers\Admin\CategoriesController@add');
+Route::post('insert-category' , 'App\Http\Controllers\Admin\CategoriesController@insert');
+Route::get('edit-category/{id}',[CategoriesController::class , 'edit']);
+Route::put('update-category/{id}',[CategoriesController::class , 'update']);
+Route::get('delete-category/{id}',[CategoriesController::class , 'delete']);
+
+// Quiz
+
+Route::get('/quiz','App\Http\Controllers\Admin\CategoriesController@quizindex');
+Route::get('/add-quiz','App\Http\Controllers\Admin\CategoriesController@quizadd');
+Route::post('insert-quiz' , 'App\Http\Controllers\Admin\CategoriesController@quizinsert');
+Route::get('edit-quiz/{id}',[CategoriesController::class , 'quizedit']);
+Route::put('update-quiz/{id}',[CategoriesController::class , 'quizupdate']);
+Route::get('delete-quiz/{id}',[CategoriesController::class , 'quizdelete']);
+// Blogs
+
+Route::get('/blogsindex','App\Http\Controllers\Admin\CategoriesController@blogsindex');
+Route::get('/add-blogs','App\Http\Controllers\Admin\CategoriesController@blogsadd');
+Route::post('insert-blogs' , 'App\Http\Controllers\Admin\CategoriesController@blogsinsert');
+Route::get('edit-blogs/{id}',[CategoriesController::class , 'blogsedit']);
+Route::put('update-blogs/{id}',[CategoriesController::class , 'blogsupdate']);
+Route::get('delete-blogs/{id}',[CategoriesController::class , 'blogsdelete']);
+
+
+// Product Routes
+Route::get('/products','App\Http\Controllers\Admin\ProductController@index');
+// Route::get('/add-product','App\Http\Controllers\Admin\ProductController@add');
+// Route::post('insert-product' , 'App\Http\Controllers\Admin\ProductController@insert');
+// Route::get('edit-product/{id}',[ProductController::class, 'edit']);
+// Route::put('update-product/{id}',[ProductController::class , 'update']);
+// Route::get('delete-product/{id}',[ProductController::class , 'delete']);
+// Route::put('update-order/{id}',[UserController::class , 'updateOrder']);
+
+
+Route::get('orders',[OrderController::class, 'index']);
+Route::get('admin/view-order/{id}',[OrderController::class, 'view']);
+Route::put('update-order/{id}',[OrderController::class , 'updateOrder']);
+Route::get('order-history',[OrderController::class , 'orderHistory']);
+
+Route::get('users',[DashboardController::class, 'users']);
+Route::get('view-user/{id}',[DashboardController::class, 'viewUser']);
+
+Route::get('message',[contactComplains::class, 'viewcomplains']);
+
+// For PDF 
+Route::get('/generate-pdf', [OrderController::class, 'tailorgeneratePdf'])->name('generate.pdf');
+
+Route::get('/generateall-pdf', [OrderController::class, 'createPDF']);
+
+Route::get('/generateprev-pdf', [OrderController::class, 'prevorderPDF']);

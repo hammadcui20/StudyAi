@@ -2,7 +2,7 @@
 
 
 @section('title')
-   ECom
+MUMTAZ & CO
 @endsection
 
 
@@ -10,164 +10,156 @@
 
 <div class="py-5"></div>
 <div class="container">
-    <!--Section: Contact v.2-->
-<section class="mb-4">
-
-    <!--Section heading-->
-    <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
-    <!--Section description-->
-    <p class="text-center w-responsive mx-auto mb-5">We love hearing from our customers! Please don't hesitate to reach out to us with any questions, comments, or concerns you may have.</p>
-    <p class="text-center w-responsive mx-auto mb-5">Our dedicated customer service team is available to assist you Monday through Friday from 9am to 5pm PST.</p>
-
-    <div class="row">
-
-        <!--Grid column-->
-        <div class="col-md-9 mb-md-0 mb-5">
-            <form id="contact-form" name="contact-form" >
-                <!--Grid row-->
-                <div class="row">
-
-                    <!--Grid column-->
-                    <div class="col-md-6">
-                        <div class="md-form mb-0">
-                            <input type="text" id="name" value="" name="name" required class="form-control">
-                            <label for="name" class="">Your name</label>
-                        </div>
-                    </div>
-                    <!--Grid column-->
-
-                    <!--Grid column-->
-                    <div class="col-md-6">
-                        <div class="md-form mb-0">
-                            <input type="text" id="email" value=""    name="email" required class="form-control">
-                            <label for="email" class="">Your email</label>
-                        </div>
-                    </div>
-                    <!--Grid column-->
-
-                </div>
-                <!--Grid row-->
-
-                <!--Grid row-->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="md-form mb-0">
-                            <input type="text" id="subject" value="" name="subject" required class="form-control">
-                            <label for="subject" class="">Subject</label>
-                        </div>
+    <h1 class="text_green fw-bold text-center">Contact US to MUMTAZ & CO</h1>
+    <div class="row g-3 mt-3">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="">
+                        <h3 class="text_green fw-bold mb-3">Contact Information</h3>
+                        <p><strong>Address:</strong> [Your Physical Address]</p>
+                        <p><strong>Address:</strong> [Your Physical Address]</p>
+                        <p><strong>Address:</strong> [Your Physical Address]</p>
+                        <p><strong>Phone:</strong> [Your Contact Number]</p>
+                        <p><strong>Email:</strong> <a href="mailto:[Your Email Address]">[Your Email Address]</a></p>
+                        <h3 class="text_green fw-bold mb-3">Business Hours</h3>
+                        <p><strong>Monday - Friday:</strong> [Opening Time - Closing Time]</p>
+                        <p><strong>Saturday:</strong> [Opening Time - Closing Time]</p>
+                        <p><strong>Sunday:</strong> [Opening Time - Closing Time]</p>
                     </div>
                 </div>
-                <!--Grid row-->
-
-                <!--Grid row-->
-                <div class="row">
-
-                    <!--Grid column-->
-                    <div class="col-md-12">
-
-                        <div class="md-form">
-                            <textarea type="text" id="message" value="" name="message" required rows="2" class="form-control md-textarea"></textarea>
-                            <label for="message">Your message</label>
-                        </div>
-
-                    </div>
-                </div>
-                <!--Grid row-->
-
-            </form>
-
-            <div class="text-center text-md-left">
-                <a class="w-100 p-2 message btn btn-outline-primary" type="button">SEND MESSAGE</a>
             </div>
-            <div class="status"></div>
         </div>
-        <!--Grid column-->
 
-        <!--Grid column-->
-        <div class="col-md-3 text-center">
-            <ul class="list-unstyled mb-0">
-                <li><i class="fas fa-map-marker-alt fa-2x"></i>
-                    <p>Wah Cantt,PAKISTAN</p>
-                </li>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <div class="">
+                        <h3 class="text_green fw-bold mb-3">Get In Touch</h3>
 
-                <li><i class="fas fa-phone mt-4 fa-2x"></i>
-                    <p>+ 92 313 0000000</p>
-                </li>
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+                        <form id="contact-form" name="contact-form">
+                            @csrf
+                            <!--Grid row-->
+                            <div class="row g-3">
 
-                <li><i class="fas fa-envelope mt-4 fa-2x"></i>
-                    <p>devg@gmail.com</p>
-                </li>
-            </ul>
+                                <!--Grid column-->
+                                <div class="col-md-12">
+                                    <div class="md-form mb-0">
+                                        <label for="name" class="">Your name</label>
+                                        <input type="text" id="name" value="" name="name" required class="form-control">
+                                    </div>
+                                </div>
+                                <!--Grid column-->
+
+                                <!--Grid column-->
+                                <div class="col-md-12">
+                                    <div class="md-form mb-0">
+                                        <label for="email" class="">Your email</label>
+                                        <input type="text" id="email" value="" name="email" required class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="md-form mb-0">
+                                        <label for="subject" class="">Subject</label>
+                                        <input type="text" id="subject" value="" name="subject" required class="form-control">
+                                    </div>
+                                </div>
+                                <!--Grid column-->
+                                <div class="col-md-12">
+
+                                    <div class="md-form">
+                                        <label for="message">Your message</label>
+                                        <textarea type="text" id="message" value="" name="message" required rows="2" class="form-control md-textarea"></textarea>
+                                    </div>
+
+                                </div>
+                                <div class="col-12">
+                                    <div class="text-center text-md-left">
+                                        <button class="message btn btn_green w-100" type="button">SEND MESSAGE</button>
+                                    </div>
+                                    <!-- <div class="status"></div> -->
+                                </div>
+                            </div>
+                            <!--Grid row-->
+                        </form>
+
+                    </div>
+                </div>
+            </div>
         </div>
-        <!--Grid column-->
-
     </div>
+    <div class="my-5">
+        <h3 class="text_green fw-bold">Visit Our Store</h3>
+        <p>For a more personalized experience, visit our store at [Your Store Address]. Our knowledgeable staff is ready to help you find the perfect solutions for your needs.</p>
 
-</section>
-<!--Section: Contact v.2-->
+        <h3 class="text_green fw-bold">Connect With Us</h3>
+        <p>Stay connected and follow us on social media for the latest updates, promotions, and more:</p>
+        <ul>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Twitter</a></li>
+        </ul>
+    </div>
 </div>
-<div class="py-5"></div>
-
-    
 @endsection
 
 @section('scripts')
 <script>
- $('.message').click(function(e){
-            e.preventDefault();
-            var name = $('#name').val();
-            var email =$('#email').val();
-            var subject =$('#subject').val();
-            var message = $('#message').val();
+    $('.message').click(function(e) {
+        e.preventDefault();
+        var name = $('#name').val();
+        var email = $('#email').val();
+        var subject = $('#subject').val();
+        var message = $('#message').val();
 
 
-            console.log(name , email , subject , message)
+        console.log(name, email, subject, message)
 
-            $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-            });
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
-            $.ajax({
-                method : "POST",
-                url : "/sendMessage",
-                data : {
-                    'name': name,
-                    'email': email,
-                    'subject': subject,
-                    'message': message,
-                },
-                success: function(response)
-                {
-                    if(response.status === "Please Login First...")
-                    {
+        $.ajax({
+            method: "POST",
+            url: "/sendMessage",
+            data: {
+                'name': name,
+                'email': email,
+                'subject': subject,
+                'message': message,
+            },
+            success: function(response) {
+                if (response.status === "Please Login First...") {
 
-                        swal("Oops...", `${response.status}`, "error");
-                    }
-                    else if(response.status === "Please Verify you Email")
-                    {
+                    swal("Oops...", `${response.status}`, "error");
+                } else if (response.status === "Please Verify you Email") {
 
-                        swal("Oops...", `${response.status}`, "error");
-                    }
-                    else if(response.status === undefined)
-                    {
+                    swal("Oops...", `${response.status}`, "error");
+                } else if (response.status === undefined) {
 
-                        swal("Oops...", `We are unable to deliver your message`, "info");
-                    }
-                    else if(response.status === 'Kindly Fill Form Correctly')
-                    {
+                    swal("Oops...", `We are unable to deliver your message`, "info");
+                } else if (response.status === 'Kindly Fill Form Correctly') {
 
-                        swal("Oops...", `${response.status}`, "error");
-                    }
-                    else
-                    {
-                        swal("Done!", `${response.status}`, "success");
-                    }
+                    swal("Oops...", `${response.status}`, "error");
+                } else {
+                    swal("Done!", `${response.status}`, "success");
                 }
-            })
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
         })
-
+    })
 </script>
 @endsection
-

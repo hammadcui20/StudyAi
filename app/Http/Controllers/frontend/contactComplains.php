@@ -9,12 +9,12 @@ use Illuminate\support\Facades\Auth;
 
 class contactComplains extends Controller
 {
-    public function index () 
+    public function index ()
     {
         return view('frontend.ContactUS');
     }
 
-    public function submitForm (Request $request) 
+    public function submitForm (Request $request)
     {
         $name = $request->input('name');
         $email = $request->input('email');
@@ -36,6 +36,8 @@ class contactComplains extends Controller
                     $contact->message =$message;
                     $contact->save();
                     return response()->json(['status' => "Message Sended Successfully"]);
+
+
                 }
                 else
                 {

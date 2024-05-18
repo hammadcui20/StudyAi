@@ -36,7 +36,7 @@
                             </div>
                             <label class="my-1" for="">ZIP CODE</label>
                             <div class="border p-2">{{$order->pincode}}</div>
-                        
+
                         </div>
                         <div class="col-md-6 table-responsive">
                             <table class="table  align-middle text-center ">
@@ -61,6 +61,11 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <h4 class="px-2">Transction Proof :</h4>
+                            <img style="width: 300  px ; height:300px;" src="{{asset('upload/transaction/'.$order->image)}}" alt="">
+                            {{-- Image Path: {{ public_path('upload/transaction/'.$order->image) }} --}}
+
+                            
                             <h4 class="px-2">Grand Total : <span class="float-end">RS {{ $order->total_price }}</span></h4>
                             <div class="mt-3">
                                 <label for="">Order Status</label>
@@ -76,10 +81,10 @@
                             </div>
                          </div>
                     </div>
-                    
+
                 </div>
             </div>
-           
+
         </div>
     </div>
 </div>
@@ -88,7 +93,7 @@
 
 
 @endsection
-{{-- 
+{{--
 <form action="{{url('update-order/'.$order->id)}}" method="POST">
     @csrf
     @method('PUT')

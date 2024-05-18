@@ -5,7 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
+use App\Models\Blog;
+use App\Models\Quiz;
 
 class CategoriesController extends Controller
 {
@@ -21,26 +25,11 @@ class CategoriesController extends Controller
     public function insert(Request $request )
     {
         $category = new Category();
-        if($request->hasFile('image'))
-        {
-            $file =  $request->File('image');
-            $ext = $file->getClientOriginalExtension();
-            $fileName = time().'.'.$ext;
-            $file->move('upload/category',$fileName);
-            $category->image = $fileName;
-        }
-
-        $category->name = $request->input('name');
-        $category->slug = $request->input('slug');
+        $category->name = $request->input('title');
+        $category->slug = $request->input('course');
         $category->description = $request->input('description');
-        $category->status = $request->input('status')   == True ? '1' : '0';
-        $category->popular = $request->input('popular')  == True ? '1' : '0';
-        $category->meta_title = $request->input('meta_title');
-        $category->meta_keyword = $request->input('meta_keyword');
-        $category->meta_description = $request->input('meta_description');
-
         $category->save();
-        return redirect('/categories')->with('status',"Category Added Successfully");
+        return redirect('/classroom')->with('status',"ClassRoom Added Successfully");
     }
 
     public function edit($id)
@@ -52,33 +41,114 @@ class CategoriesController extends Controller
     public function update(Request $request ,  $id)
     {
         $category = Category::find($id);
-        if($request->hasFile('image'))
-        {
-            $path  = 'upload/category/'.$category->image;
-            if(File::exists($path))
-            {
-                File::delete($path);
-            }
-            $file =  $request->File('image');
-            $ext = $file->getClientOriginalExtension();
-            $fileName = time().'.'.$ext;
-            $file->move('upload/category',$fileName);
-            $category->image = $fileName;
-        }
-        $category->name = $request->input('name');
-        $category->slug = $request->input('slug');
+        $category->name = $request->input('title');
+        $category->slug = $request->input('course');
         $category->description = $request->input('description');
-        $category->status = $request->input('status')   == True ? '1' : '0';
-        $category->popular = $request->input('popular')  == True ? '1' : '0';
-        $category->meta_title = $request->input('meta_title');
-        $category->meta_keyword = $request->input('meta_keyword');
-        $category->meta_description = $request->input('meta_description');
-        
         $category->update();
-        return redirect('/categories')->with('status',"Category Updated Successfully");
+        return redirect('/classroom')->with('status',"Shopkeepers Updated Successfully");
     }
 
     public function delete($id )
+    {
+        $category = Category::find($id);
+        $category->delete();
+        return redirect('/classroom')->with('status',"Shopkeepers deleted Successfully");
+    }
+    public function blogsindex()
+    {
+        $category = Blog::all();
+        return view('Admin.blogs.index', compact('category'));
+    }
+    public function blogsadd()
+    {
+        return view('Admin.blogs.add');
+    }
+    public function blogsinsert(Request $request )
+    {
+        $category = new Blog();
+        if($request->hasFile('image'))
+        {
+            $file =  $request->File('file');
+            $ext = $file->getClientOriginalExtension();
+            $fileName = time().'.'.$ext;
+            $file->move('upload/category',$fileName);
+            $category->file = $fileName;
+        }
+        $category->title = $request->input('title');
+        $category->description = $request->input('description');    
+        $category->privacy = $request->input('privacy')   == True ? '1' : '0';
+        $category->save();
+        return redirect('/blogsindex')->with('status',"Data Added Successfully");
+    }
+
+    public function blogsedit($id)
+    {
+        $category = Blog::find($id);
+        return view('Admin.blogs.edit',compact('category'));
+    }
+
+    public function blogsupdate(Request $request ,  $id)
+    {
+        $category = Blog::find($id);
+        if($request->hasFile('image'))
+        {
+            $file =  $request->File('file');
+            $ext = $file->getClientOriginalExtension();
+            $fileName = time().'.'.$ext;
+            $file->move('upload/category',$fileName);
+            $category->file = $fileName;
+        }
+        $category->title = $request->input('title');
+        $category->description = $request->input('description');    
+        $category->privacy = $request->input('privacy')   == True ? '1' : '0';
+        $category->update();
+        return redirect('/blogsindex')->with('status',"Data Added Successfully");
+    }
+
+    public function blogsdelete($id )
+    {
+        $category = Blog::find($id);
+        
+        $category->delete();
+        return redirect('/blogs')->with('status',"Shopkeepers deleted Successfully");
+    }
+    public function quizindex()
+    {
+        $category = Quiz::all();
+        return view('Admin.quiz.index', compact('category'));
+    }
+    public function quizadd()
+    {
+        return view('Admin.quiz.add');
+    }
+    public function quizinsert(Request $request )
+    {
+        $category = new Quiz();
+        $category->class= $request->input('class');
+        $category->course = $request->input('course');
+        $category->description = $request->input('description');
+        $category->save();
+        return redirect('/quiz')->with('status',"ClassRoom Added Successfully");
+
+    }
+
+    public function quizedit($id)
+    {
+        $category = Quiz::find($id);
+        return view('Admin.quiz.edit',compact('category'));
+    }
+
+    public function quizupdate(Request $request ,  $id)
+    {
+        $category = Quiz::find($id);
+        $category->class= $request->input('class');
+        $category->course = $request->input('course');
+        $category->description = $request->input('description');
+        $category->update();
+        return redirect('/quiz')->with('status',"ClassRoom Added Successfully");
+    }
+
+    public function quizdelete($id )
     {
         $category = Category::find($id);
         if($category->image)
@@ -90,6 +160,6 @@ class CategoriesController extends Controller
             }
         }
         $category->delete();
-        return redirect('/categories')->with('status',"Category deleted Successfully");
+        return redirect('/quiz')->with('status',"Shopkeepers deleted Successfully");
     }
 }

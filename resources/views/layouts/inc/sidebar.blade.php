@@ -3,7 +3,7 @@
       <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href="{{url('dashboard')}}">
         <img src="../assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold text-white">Admin Dashboard</span>
+        <span class="ms-1 font-weight-bold text-white">Teacher Portal</span>
       </a>
     </div>
     <hr class="horizontal light mt-0 mb-2">
@@ -17,28 +17,37 @@
             <span class="nav-link-text ms-1">Dashboard</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white  {{ Request::is('categories') ? 'active' : '' }}" href="{{url('categories')}}">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">category</i>
-            </div>
-            <span class="nav-link-text ms-1">Categories</span>
-          </a>
-        </li>
+
         <li class="nav-item ">
-          <a class="nav-link text-white {{ Request::is('add-category') ? 'active' : ''}} " href="{{url('add-category')}}">
+          <a class="nav-link text-white {{ Request::is('add-category') ? 'active' : ''}} " href="{{url('add-classroom')}}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">add_circle</i>
             </div>
-            <span class="nav-link-text ms-1">Add Category</span>
+            <span class="nav-link-text ms-1">Classroom</span>
           </a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link text-white {{ Request::is('products') ? 'active' : ''}} " href="{{url('products')}}">
+          <a class="nav-link text-white {{ Request::is('add-category') ? 'active' : ''}} " href="{{url('add-blogs')}}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">add_circle</i>
+            </div>
+            <span class="nav-link-text ms-1">Blogs</span>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link text-white {{ Request::is('add-category') ? 'active' : ''}} " href="{{url('add-quiz')}}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">add_circle</i>
+            </div>
+            <span class="nav-link-text ms-1">Quiz</span>
+          </a>
+        </li>
+        <li class="nav-item ">
+          {{-- <a class="nav-link text-white {{ Request::is('products') ? 'active' : ''}} " href="{{url('products')}}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">inventory_2</i>
             </div>
-            <span class="nav-link-text ms-1">Product</span>
+            <span class="nav-link-text ms-1">Products</span>
           </a>
         </li>
         <li class="nav-item ">
@@ -47,33 +56,18 @@
               <i class="material-icons opacity-10">add_circle</i>
             </div>
             <span class="nav-link-text ms-1">Add Product</span>
-          </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link text-white {{ Request::is('orders') ? 'active' : ''}} " href="{{url('orders')}}">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">list_alt</i>
-            </div>
-            <span class="nav-link-text ms-1">Orders List</span>
-          </a>
+          </a> --}}
         </li>
         <li class="nav-item ">
           <a class="nav-link text-white {{ Request::is('users') ? 'active' : ''}} " href="{{url('users')}}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">group</i>
             </div>
-            <span class="nav-link-text ms-1">Users List</span>
+            <span class="nav-link-text ms-1">Students</span>
           </a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link text-white {{ Request::is('users') ? 'active' : ''}} " href="{{url('message')}}">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">message</i>
-            </div>
-            <span class="nav-link-text ms-1">Messages</span>
-          </a>
-        </li>
-       
+      
+
       </ul>
     </div>
     <div class="sidenav-footer position-absolute w-100 bottom-0 ">

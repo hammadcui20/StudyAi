@@ -27,8 +27,8 @@
          labels: labels,
          datasets: [{
            label: 'No of Users',
-           backgroundColor: 'rgb(9,9,121,1)',
-           borderColor: 'rgb(9,9,121,1)',
+           backgroundColor: '#F5BE1B',
+           borderColor: '#F5BE1B',
            data: users,
          }]
        };

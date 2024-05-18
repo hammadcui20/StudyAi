@@ -45,7 +45,7 @@ class WelcomeMail extends Mailable
         return new Content(
             markdown: 'emails.welcome',
         );
-    }
+    }`
 
     /**
      * Get the attachments for the message.

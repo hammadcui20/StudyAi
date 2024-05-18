@@ -9,6 +9,7 @@
                     <div class="card-header">
                         <h4>Completed Orders
                             <a href="{{url('orders')}}" class="btn btn-primary float-end">New Orders</a>
+                            <a href="{{ url('generateprev-pdf') }}" class="btn btn-primary float-end">Generate PDF</a>
                         </h4>
                     </div>
                     <div class="card-body table-responsive">

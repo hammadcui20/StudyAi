@@ -11,4 +11,9 @@ class frontendController extends Controller
     {
         return view('Admin.dashboard');
     }
+
+    public function tailorindex()
+    {
+        return view('tailor.dashboard');
+    }
 }

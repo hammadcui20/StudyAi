@@ -30,10 +30,13 @@
                     <label for="" class="me-3">Original Price  : <s>Rs {{$product->original_price}}</s></label>
                     <label for="" class="fw-bold">Selling Price  : Rs {{$product->selling_price}}</label>
                     <p class="mt-3">
-                        {!! $product->small_description !!}
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam labore quibusdam voluptate repudiandae accusamus dicta aut voluptates doloremque perspiciatis beatae!
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente incidunt ducimus culpa vita
+                        {{$product->small_description}}
+                        {{-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam labore quibusdam voluptate repudiandae accusamus dicta aut voluptates doloremque perspiciatis beatae!
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente incidunt ducimus culpa vita --}}
                     </p>
+                    <label for="" class="me-3">Weight  :{{$product->weight}}</label>
+                    <br>
+                    <label for="" class="fw-bold">Dimensions  :{{$product->dimensions}}</label>
                     <hr>
                     @if($product->qty > 0)
                         <label for="" style="background:rgba(234,88,11,255); color:white;" class="badge">In Stock</label>
@@ -49,11 +52,10 @@
                                 <input type="text" readonly name="quantity" value="1" class="form-control quantity-input bg-light text-center">
                                 <button class="input-group-text increment-btn">+</button>
                             </div>
-                        </div>
-                        <div class="col-md-10">
+                        <div class="col-12">
                             <br/>
                             @if($product->qty > 0)
-                            <button class="btn btn-outline-primary me-3 float-start addToCartButton">Add to Cart <i class="fa-solid fa-cart-plus"></i></button>
+                            <button class="btn btn-primary w-100 addToCartButton">Add to Cart <i class="fa-solid fa-cart-plus"></i></button>
                             @endif
                         </div>
                     </div>
@@ -63,7 +65,7 @@
     </div>
   </div>
   <div class="py-2">
-    
+
   </div>
 
 @endsection
@@ -76,6 +78,7 @@
             e.preventDefault();
             var product_id = $(this).closest('.product_data').find('.prod_id').val();
             var product_qty = $(this).closest('.product_data').find('.quantity-input').val();
+            // var product_size =$(this).closest('.product_data').find('.size-input').val();
             $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -87,7 +90,8 @@
                 url : "/add-to-cart",
                 data : {
                     'product_id': product_id,
-                    'product_qty': product_qty
+                    'product_qty': product_qty,
+                    // 'product_size': product_size
                 },
                 success: function(response)
                 {
@@ -121,7 +125,7 @@
                 value++;
                 $('.quantity-input').val(value);
             }
-        }) 
+        })
         $('.decrement-btn').click(function (e) {
             e.preventDefault();
             console.log('hello')
@@ -134,7 +138,7 @@
                 value--;
                 $('.quantity-input').val(value);
             }
-        }) 
-    }) 
+        })
+    })
 </script>
 @endsection

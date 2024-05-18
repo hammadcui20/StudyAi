@@ -1,5 +1,5 @@
 {{-- <div class="container-fluid py-4">
- 
+
   <div class="row mb-4">
     <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
       <div class="card">
@@ -335,7 +335,7 @@
   </div>
 
 </div> --}}
-    
+
 {{-- <body>
   <div style="height:20%;width:40%">
       <canvas id="myChart"></canvas>
@@ -344,8 +344,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="text/javascript">
-    var labels =  {{ Js::from($labels) }};
-    var users =  {{ Js::from($data) }};
+    // var labels =  {{ Js::from($labels) }};
+    // var users =  {{ Js::from($data) }};
     const data = {
       labels: labels,
       datasets: [{
