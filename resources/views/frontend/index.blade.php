@@ -2,7 +2,7 @@
 
 
 @section('title')
-   Pain & Gain
+   ECom
 @endsection
 
 @section('content')
@@ -20,7 +20,7 @@
                
                     <a  href="{{url('/category')}}" class="card col-md-4 " style="border:none;">
                         <div class="card-body zoom postion-relative">
-                            <img src="{{asset('images/accessories.jpg')}}"  class="w-100 lazy rounded" height="200px"   alt="">
+                            <img src="{{asset('images/asc.jpg')}}"  class="w-100 lazy rounded" height="200px"   alt="">
                             <div class="text-light position-absolute top-50 start-50 translate-middle">
                                 <h4 style="letter-spacing:3px; ">ACCESSORIES</h4>
                             </div>
@@ -28,7 +28,7 @@
                     </a>
                     <a href="{{url('/category')}}"   class="card col-md-4 " style="border:none;">
                         <div class="card-body zoom postion-relative">
-                            <img src="{{asset('images/equipments.jpg')}}"  class="w-100 lazy rounded" height="200px"  alt="">
+                            <img src="{{asset('images/equit.jpg')}}"  class="w-100 lazy rounded" height="200px"  alt="">
                             <div class="text-light position-absolute top-50 start-50 translate-middle">
                                 <h4 style="letter-spacing:3px; ">EQUIPMENTS</h4>
                             </div>
@@ -36,20 +36,19 @@
                     </a>
                     <a href="{{url('/category')}}" class="card col-md-4 " style="border:none;">
                         <div class="card-body zoom postion-relative">
-                            <img src="{{asset('images/supplements.jpg')}}"  class="w-100 lazy rounded" height="200px"  alt="">
+                            <img src="{{asset('images/more.jpg')}}"  class="w-100 lazy rounded" height="200px"  alt="">
                             <div class="text-light position-absolute top-50 start-50 translate-middle">
-                                <h4 style="letter-spacing:3px; ">SUPPLEMENTS</h4>
+                                <h4 style="letter-spacing:3px; ">More</h4>
                             </div>
                         </div>
                     </a>
-                
             </div>
         </div>
     </div>
     
     <div class="container  d-flex align-items-center justify-content-around p-4">
         <div class="border border-dark " style="width:20rem; background:black;"></div>
-        <h3 style="font-size: ; font-weight:bolder; padding:5px;">NEW ARRIVALS</h3>
+        <h3 style="font-size: ; font-weight:bolder; padding:5px;">What's Trending </h3>
         <div class="border border-dark " style="width:20rem; background:black;"></div>
     </div>
     <div class="py-5" id="products">
@@ -122,8 +121,7 @@
         font-size: 2rem !important;
     }
   
-
-  </style>
+</style>
 
 
 

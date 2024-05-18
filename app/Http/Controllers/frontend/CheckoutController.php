@@ -51,7 +51,7 @@ class CheckoutController extends Controller
 
         $order->total_price= $total;
 
-        $order->tracking_no = 'AbdullahMoiz'.rand(1111,9999);
+        $order->tracking_no = 'od'.rand(1111,9999);
         $order->save();
 
         $order->id;
@@ -72,20 +72,20 @@ class CheckoutController extends Controller
             $prod->update();
         }
 
-        if(Auth::user()->address1 == NULL)
-        {
-            $user = User::where('id',Auth::id())->first();
-            $user->lname = $request->input('lname');
-            $user->phoneno = $request->input('phoneno');
-            $user->address1 = $request->input('address1');
-            $user->address2 = $request->input('address2');
-            $user->city = $request->input('city');
-            $user->state = $request->input('state');
-            $user->country = $request->input('country');
-            $user->pincode = $request->input('pincode');   
-            $user->update();
-        }
-        $cartitems = Cart::where('user_id',Auth::id());
+        // if(Auth::user()->address1 == NULL)
+        // {
+        //     $user = User::where('id',Auth::id())->first();
+        //     $user->name = $request->input('fname');
+        //     // $user->phoneno = $request->input('phoneno');
+        //     // $user->address1 = $request->input('address1');
+        //     // $user->address2 = $request->input('address2');
+        //     // $user->city = $request->input('city');
+        //     // $user->state = $request->input('state');
+        //     // $user->country = $request->input('country');
+        //     // $user->pincode = $request->input('pincode');    
+        //     $user->update();
+        // }
+        // $cartitems = Cart::where('user_id',Auth::id());
         Cart::destroy($cartitem);
 
         

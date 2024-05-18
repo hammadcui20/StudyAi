@@ -70,6 +70,10 @@ a
   color: rgba(234,88,11,255) !important;
   font-size:1.2rem !important;
 }
+.navbar>.container-fluid a:hover
+{
+  color: yellow !important;
+}
 
 .zoom:hover
 {
@@ -143,6 +147,10 @@ a
     {
       color: black !important;
     }
+#loginblack:hover 
+{
+  color: yellow !important;
+}
 
 /*   
     .loaders 

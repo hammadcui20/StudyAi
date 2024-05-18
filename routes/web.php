@@ -13,7 +13,10 @@ use App\Http\Controllers\frontend\CartController;
 use App\Http\Controllers\frontend\CheckoutController;
 use App\Http\Controllers\frontend\UserController;
 use App\Http\Controllers\frontend\contactComplains;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\support\Facades\Mail;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ChartJSController;
 use App\Mail\WelcomeMail;
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +28,15 @@ use App\Mail\WelcomeMail;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Routes for 2FA
+
+Route::middleware(['2fa'])->group(function () {
+   
+    Route::get('/', [HomeController::class, 'index'])->name('mainpage');
+    Route::post('/2fa', [FrontController::class ,  'mainpage'])->name('2fa');
+});
+Route::get('/complete-registration', [RegisterController::class, 'completeRegistration'])->name('complete.registration');
+
 
 Route::get('/', [FrontController::class ,  'mainpage']);
 Route::get('/category',[FrontController::class ,  'category']);
@@ -32,18 +44,12 @@ Route::get('view-category/{slug}',[FrontController::class ,  'viewCategory']);
 Route::get('view-category/{cate_slug}/{prod_slug}',[FrontController::class ,  'productView']);
 Route::get('view-product/{prod_slug}',[FrontController::class ,  'eachProdView']);
 
-
-
-
-
-
-
 Auth::routes(['verify' => true]);
 
-Route::get('/email', function(){
-    Mail::to('mrmoiz1.dev@gmail.com')->send(new WelcomeMail());
-    return new WelcomeMail();
-});
+// Route::get('/email', function(){
+//     Mail::to('')->send(new WelcomeMail());
+//     return new WelcomeMail();
+// });
 
 
 Route::post('add-to-cart',[CartController::class,'addProduct']);
@@ -71,12 +77,13 @@ Route::middleware(['auth','isAdmin'])->group(function () {
     Route::get('/dashboard', function () {
         return view('Admin.dashboard');
      });
+    //  Route::get('/dashboard', [ChartJSController::class, 'index'])->name('chart');
+    // Route::get('chart', [ChartJSController::class, 'index']);
 });
-
-
 
 Route::middleware(['auth','isAdmin'])->group(function () {
     Route::get('/dashboard','App\Http\Controllers\Admin\frontendController@index');
+    Route::get('/dashboard', [ChartJSController::class, 'index'])->name('chart');
 
     // Categories Routes
 
@@ -108,6 +115,8 @@ Route::middleware(['auth','isAdmin'])->group(function () {
     
     
     Route::get('message',[contactComplains::class, 'viewcomplains']);
+
+
 });
 
 
